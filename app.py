@@ -330,6 +330,7 @@ def vendors():
         return redirect('/vendors')
     print(1)
     return render_template('vendors_form.html')
+
 @app.route('/vendors/delete', methods=['GET'])
 def delete_vendor():
     if request.method == 'GET':
@@ -349,6 +350,22 @@ def delete_vendor():
         cur.close()
 
         return redirect("/vendors")
+
+@app.route('/assignment8', methods=['GET', 'POST'])
+def assignment8():
+    if request.method == 'POST':
+        cur = mysql.connection.cursor()
+        name = request.form['name']
+        
+        #SQL Query Here
+        query_name = name + "%"
+        cur.execute("SELECT first_name FROM passenger WHERE first_name LIKE %s", [query_name])
+        mysql.connection.commit()
+
+        output = cur.fetchall()
+
+        return render_template('assignment8.html', data=output)
+    return render_template('assignment8.html')
 
 if __name__=="__main__":
     app.run(debug=True)
