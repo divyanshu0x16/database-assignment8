@@ -413,11 +413,10 @@ def assignment8q3():
 def assignment8q4():
     if request.method == 'POST':
         cur = mysql.connection.cursor()
-        name = request.form['name']
+        dob = request.form['dob']
         
         #SQL Query Here
-        query_name = name + "%"
-        cur.execute("SELECT first_name FROM passenger WHERE first_name LIKE %s", [query_name])
+        cur.execute("SELECT aadhar_no FROM passenger WHERE dob=%s", [dob])
         mysql.connection.commit()
 
         output = cur.fetchall()
