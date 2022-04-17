@@ -13,20 +13,27 @@
     <h1><center>Assignment 8</center></h1>
     <div style=" margin: 50px">
       <h2>Question1</h2>
-      <p>Table : ________</p>
-      <p>Attribute: ________</p>
+      <p>Table : Passenger</p>
+      <p>Attribute: first_name and last_name</p>
       <form class="example" method="POST" action="/assignment8/question1">
         <input
           type="text"
-          placeholder="Search on Attribute"
-          name="name"
+          placeholder="First Name"
+          name="first_name"
+          style="width: 300px; font-size: large"
+        />
+        <input
+          type="text"
+          placeholder="Last Name"
+          name="last_name"
           style="width: 300px; font-size: large"
         />
         <input class="btn btn-primary" type="submit" value="Search">
       </form>
         {% for item in data %}
             <tr>
-                <td> {{item[0]}} </td>
+                <td> {{item[1]}} </td>
+                <td> {{item[2]}} </td>
                 </br>
             </tr>
         {% endfor %}

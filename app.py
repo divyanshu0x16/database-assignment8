@@ -359,13 +359,19 @@ def assignment8():
 def assignment8q1():
     if request.method == 'POST':
         cur = mysql.connection.cursor()
-        name = request.form['name']
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
         
         #SQL Query Here
-        query_name = name + "%"
-        cur.execute("SELECT first_name FROM passenger WHERE first_name LIKE %s", [query_name])
-        mysql.connection.commit()
+        query_fname = first_name + "%"
+        query_lname = last_name + "%"
+        
+        #Unoptimized Query
+        #cur.execute("SELECT * FROM passenger WHERE first_name LIKE %s OR last_name LIKE %s", (query_fname, query_lname))
 
+        #Optimizied Query
+        cur.execute("(SELECT * FROM passenger WHERE first_name LIKE %s) UNION (SELECT * FROM passenger WHERE last_name LIKE %s)", (query_fname, query_lname))
+        mysql.connection.commit()
         output = cur.fetchall()
 
         return render_template('assignment8.html', data=output)
