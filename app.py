@@ -423,6 +423,18 @@ def assignment8q4():
 
         return render_template('assignment8.html', data4=output)
 
+@app.route('/assignment8/question5', methods=['GET', 'POST'])
+def assignment8q5():
+    if request.method == 'POST':
+        cur = mysql.connection.cursor()
+
+        #SQL Query Here
+        cur.execute('select count(last_name) from passenger')
+        mysql.connection.commit()
+
+        output = cur.fetchall()
+        return render_template('assignment8.html', data5=output)
+
 if __name__=="__main__":
     app.run(debug=True)
 

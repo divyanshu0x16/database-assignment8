@@ -111,6 +111,21 @@
         {% endfor %}
     </div>
 
+    <div style=" margin: 50px">
+      <h2>Question5</h2>
+      <p>Table : Passenger</p>
+      <p>Attribute: Last Name</p>
+      <p>Get count of last name</p>
+      <form class="example" method="POST" action="/assignment8/question5">
+        <input class="btn btn-primary" type="submit" value="Get Count">
+      </form>
+        {% for item in data5 %}
+            <tr>
+                <td> {{item[0]}} </td>
+                </br>
+            </tr>
+        {% endfor %}
+    </div>
 
   </body>
 </html>
