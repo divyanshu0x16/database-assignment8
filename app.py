@@ -435,6 +435,22 @@ def assignment8q5():
         output = cur.fetchall()
         return render_template('assignment8.html', data5=output)
 
+@app.route('/assignment8/question7', methods=['GET', 'POST'])
+def assignment8q7():
+    if request.method == 'POST':
+        cur = mysql.connection.cursor()
+        amount = request.form['amount']
+
+        #Unoptimized Query
+        #cur.execute('select * from passenger where aadhar_no in(select aadhar_no from transact where amount>150);')
+
+        #SQL Query Here
+        cur.execute('select aadhar_no,first_name,last_name,dob from passenger natural join transact where amount>%s;', [amount])
+        mysql.connection.commit()
+
+        output = cur.fetchall()
+        return render_template('assignment8.html', data7=output)
+
 if __name__=="__main__":
     app.run(debug=True)
 
