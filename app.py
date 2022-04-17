@@ -353,6 +353,10 @@ def delete_vendor():
 
 @app.route('/assignment8', methods=['GET', 'POST'])
 def assignment8():
+    return render_template('assignment8.html')
+
+@app.route('/assignment8/question1', methods=['GET', 'POST'])
+def assignment8q1():
     if request.method == 'POST':
         cur = mysql.connection.cursor()
         name = request.form['name']
@@ -365,7 +369,21 @@ def assignment8():
         output = cur.fetchall()
 
         return render_template('assignment8.html', data=output)
-    return render_template('assignment8.html')
+
+@app.route('/assignment8/question2', methods=['GET', 'POST'])
+def assignment8q2():
+    if request.method == 'POST':
+        cur = mysql.connection.cursor()
+        name = request.form['name']
+        
+        #SQL Query Here
+        query_name = name + "%"
+        cur.execute("SELECT first_name FROM passenger WHERE first_name LIKE %s", [query_name])
+        mysql.connection.commit()
+
+        output = cur.fetchall()
+
+        return render_template('assignment8.html', data2=output)
 
 if __name__=="__main__":
     app.run(debug=True)

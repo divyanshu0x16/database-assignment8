@@ -15,7 +15,7 @@
       <h2>Question1</h2>
       <p>Table : ________</p>
       <p>Attribute: ________</p>
-      <form class="example" method="POST" action="">
+      <form class="example" method="POST" action="/assignment8/question1">
         <input
           type="text"
           placeholder="Search on Attribute"
@@ -25,6 +25,26 @@
         <input class="btn btn-primary" type="submit" value="Search">
       </form>
         {% for item in data %}
+            <tr>
+                <td> {{item[0]}} </td>
+                </br>
+            </tr>
+        {% endfor %}
+    </div>
+    <div style=" margin: 50px">
+      <h2>Question2</h2>
+      <p>Table : ________</p>
+      <p>Attribute: ________</p>
+      <form class="example" method="POST" action="/assignment8/question2">
+        <input
+          type="text"
+          placeholder="Search on Attribute"
+          name="name"
+          style="width: 300px; font-size: large"
+        />
+        <input class="btn btn-primary" type="submit" value="Search">
+      </form>
+        {% for item in data2 %}
             <tr>
                 <td> {{item[0]}} </td>
                 </br>
