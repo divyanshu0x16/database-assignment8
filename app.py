@@ -380,6 +380,39 @@ def assignment8q1():
 def assignment8q2():
     if request.method == 'POST':
         cur = mysql.connection.cursor()
+        train_name = request.form['train_name']
+
+        #Unoptimized Query
+        #query_name = train_name + '%'
+        #cur.excute("SELECT * FROM train WHERE train_name LIKE (%Ambala%)")
+        
+        #Optimized Query
+        query_name = train_name
+        cur.execute("SELECT train_id, train_name FROM train WHERE match(train_name) AGAINST (%s);", [query_name])
+        mysql.connection.commit()
+
+        output = cur.fetchall()
+
+        return render_template('assignment8.html', data2=output)
+
+@app.route('/assignment8/question3', methods=['GET', 'POST'])
+def assignment8q3():
+    if request.method == 'POST':
+        cur = mysql.connection.cursor()
+        stall_id = request.form['stall_id']
+        
+        #SQL Query Here
+        cur.execute("SELECT * FROM stall WHERE stall_id=%s", [stall_id])
+        mysql.connection.commit()
+
+        output = cur.fetchall()
+
+        return render_template('assignment8.html', data3=output)
+
+@app.route('/assignment8/question4', methods=['GET', 'POST'])
+def assignment8q4():
+    if request.method == 'POST':
+        cur = mysql.connection.cursor()
         name = request.form['name']
         
         #SQL Query Here
@@ -389,7 +422,7 @@ def assignment8q2():
 
         output = cur.fetchall()
 
-        return render_template('assignment8.html', data2=output)
+        return render_template('assignment8.html', data4=output)
 
 if __name__=="__main__":
     app.run(debug=True)

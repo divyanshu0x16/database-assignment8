@@ -11,6 +11,7 @@
 
   <body class="content" style="background-color: rgb(241, 215, 143);">
     <h1><center>Assignment 8</center></h1>
+
     <div style=" margin: 50px">
       <h2>Question1</h2>
       <p>Table : Passenger</p>
@@ -38,15 +39,16 @@
             </tr>
         {% endfor %}
     </div>
+
     <div style=" margin: 50px">
       <h2>Question2</h2>
-      <p>Table : ________</p>
-      <p>Attribute: ________</p>
+      <p>Table : Train</p>
+      <p>Attribute: Train Name</p>
       <form class="example" method="POST" action="/assignment8/question2">
         <input
           type="text"
-          placeholder="Search on Attribute"
-          name="name"
+          placeholder="Search Train Name"
+          name="train_name"
           style="width: 300px; font-size: large"
         />
         <input class="btn btn-primary" type="submit" value="Search">
@@ -54,9 +56,56 @@
         {% for item in data2 %}
             <tr>
                 <td> {{item[0]}} </td>
+                <td> {{item[1]}} </td>
                 </br>
             </tr>
         {% endfor %}
     </div>
+
+    <div style=" margin: 50px">
+      <h2>Question3</h2>
+      <p>Table : Stall</p>
+      <p>Attribute: Stall ID</p>
+      <form class="example" method="POST" action="/assignment8/question3">
+        <input
+          type="text"
+          placeholder="Search with Stall ID"
+          name="stall_id"
+          style="width: 300px; font-size: large"
+        />
+        <input class="btn btn-primary" type="submit" value="Search">
+      </form>
+        {% for item in data3 %}
+            <tr>
+                <td> {{item[0]}} </td>
+                <td> {{item[1]}} </td>
+                <td> {{item[2]}} </td>
+                </br>
+            </tr>
+        {% endfor %}
+    </div>
+
+    <div style=" margin: 50px">
+      <h2>Question4</h2>
+      <p>Table : Train</p>
+      <p>Attribute: Train Name</p>
+      <form class="example" method="POST" action="/assignment8/question4">
+        <input
+          type="text"
+          placeholder="Search Train Name"
+          name="name"
+          style="width: 300px; font-size: large"
+        />
+        <input class="btn btn-primary" type="submit" value="Search">
+      </form>
+        {% for item in data4 %}
+            <tr>
+                <td> {{item[0]}} </td>
+                </br>
+            </tr>
+        {% endfor %}
+    </div>
+
+
   </body>
 </html>
